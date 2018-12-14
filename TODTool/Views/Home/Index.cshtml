@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container jumbotron">
+    <div class="main">
+         <h1>Topic On Demand Tool</h1>
+         <p class="lead">
+             TOD Tool is a automated tool for Extracting and Generating Reports based on Comments using Latest Technologies (Web 2.0, SQL Server)
+         </p>
+         <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="container col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                Topic On Demand tool gives a powerful, data based way to build Dynamic Topic On Demand Report
+                that enables a clean separation of concerns and gives full control over Comment Extraction filtering,
+                Product Listing, Mapping and Report Generation of Comment Extraction Reports combining CE and C33 Omniture Report.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="container col-md-4">
+            <h2>Get to Know more on Comment Extractor</h2>
+            <p>
+                Comment Extractor is a command line tool used to extract the comments given by the customers for the products visited in support site.
+                Also CE Tool makes it easy to extract the comments from Reach Server and update the database.
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="container col-md-4">
+            <h2>Get to know more on Reports</h2>
+            <p>
+                Reports are classified into two type.
+                1. Comment Extractor Report which combines both CE and C33 Omniture Report.
+                2. Topic On Demand Report. Once again there are two types of reports here classified as a) General Report b) Customized Report.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="container jumbotron">
+    @ViewBag.CEData
+</div>
+    

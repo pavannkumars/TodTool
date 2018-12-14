@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3b0f7d48c23e45c38093160c97d727c7" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="TODDBModel.CE_DATA" Width="2.375" PointX="4.75" PointY="0.625" />
+        <EntityTypeShape EntityType="TODDBModel.FW_CALENDAR" Width="1.5" PointX="5.25" PointY="5.625" />
+        <AssociationConnector Association="TODDBModel.FK_CE_DATA_FW_CALENDAR" />
+        <EntityTypeShape EntityType="TODDBModel.OMNITURE_DATA" Width="2.25" PointX="9.25" PointY="1.875" />
+        <AssociationConnector Association="TODDBModel.FK_OMNITURE_DATA_FW_CALENDAR" />
+        <EntityTypeShape EntityType="TODDBModel.REPORT_DATA" Width="1.5" PointX="2.75" PointY="3.125" />
+        <AssociationConnector Association="TODDBModel.FK_REPORT_DATA_FW_CALENDAR" />
+        <EntityTypeShape EntityType="TODDBModel.TOD_DATA" Width="2.375" PointX="9.5" PointY="6.625" />
+        <AssociationConnector Association="TODDBModel.FK_TOD_DATA_FW_CALENDAR" />
+        <EntityTypeShape EntityType="TODDBModel.TOD_TransactionLog" Width="1.5" PointX="1.125" PointY="6" />
+        <EntityTypeShape EntityType="TODDBModel.User" Width="1.5" PointX="7.5" PointY="7.5" />
+        <EntityTypeShape EntityType="TODDBModel.Product" Width="1.5" PointX="3.25" PointY="8.5" />
+        <EntityTypeShape EntityType="TODDBModel.Product_Variant" Width="1.5" PointX="5.25" PointY="8.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

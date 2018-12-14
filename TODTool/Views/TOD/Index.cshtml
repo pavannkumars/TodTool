@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Topic On Demand Report Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h2 class="text-center">Topic On Demand Reports</h2>
+    <div class="row">
+        <div class="col-sm-12">
+            <marquee behavior="scroll" direction="left"><p class="text-info" id="schstat"></p></marquee>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            @Html.Partial("_LeftNavBar");
+        </div>
+        <div class="col-sm-10" >
+            <!-- Report Page Section-->
+            <div class="container pull-left" style="min-width:100%; overflow:scroll;">
+                <fieldset>
+                    <legend class="text-info"><b>Comment Extractor Details</b></legend>
+                    @{
+                        Html.RenderPartial("_CETableDataDisplay");
+                    }
+                </fieldset>
+            </div>
+            <!-- C33 Omniture Report -->
+            <div class="container pull-left" style="min-width:100%;">
+                <fieldset>
+                    <legend class="text-info"><b>C33 Omniture Report Details</b></legend>
+                    @{
+                        Html.RenderPartial("UploadFiles");
+                    }
+                </fieldset>
+            </div>
+            <div class="container pull-left" style="min-width:100%;">
+                <fieldset>
+                    <legend class="text-info"><b>TOD Reports</b></legend>
+                    <p>Generate Basic Reports or Customized Reports of Topics on Demand by choosing the tabs.</p>
+                    <ul class="nav nav-pills">
+                        <li class="active"><a class="text-info" data-toggle="pill" href="#basic">Basic Report</a></li>
+                        <li><a class="text-info" data-toggle="pill" href="#cust">Customized Report</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="basic" class="tab-pane fade in active text-info">
+                            <h3>Basic Report</h3>
+                            <p>Generate Basic Report</p>
+                        </div>
+                        <div id="cust" class="tab-pane fade text-info">
+                            <h3>Customized Report</h3>
+                            <p>Generate Customized Report selecting the filters below.</p>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <!-- Download section -->
+            <div class="container pull-left" style="min-width:100%;">
+                <fieldset>
+                    <legend class="text-info"><b>Report Downloads</b></legend>
+                    <p>
+                        Download links of the CE Report and TOD Report need to be given here
+                    </p>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+

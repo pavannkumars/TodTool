@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;IE=11; IE=9; IE=8; IE=7" />
+    <link rel="shortcut icon" href="~/images/favicon.ico" />
+    <title>@ViewBag.Title - TOD Automation Tool</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        .navbar-default {
+            background-color: #007DB8;
+        }
+    </style>
+
+    <style>
+        thead input {
+            width: 100%;
+            padding: 3px;
+            box-sizing: border-box;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0px;
+            margin-left: 0px;
+            display: inline-table;
+            border: 0px;
+        }
+
+            .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+                border: 0px;
+            }
+
+        th, td {
+            white-space: nowrap;
+        }
+
+        div.dataTables_wrapper {
+            width: 1800px;
+            margin: 0 auto;
+        }
+
+        div.ColVis {
+            float: left;
+        }
+        /*            .table {
+                            border: 1px solid blue;
+                        }*/
+        .table > tbody > tr > td {
+            word-wrap: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            /*border: 1px solid blue;*/
+            width: 140px;
+            max-width: 190px;
+        }
+
+        tfoot {
+            display: table-header-group;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 5px;
+            display: inline-table;
+            background: ButtonFace;
+            border-width: 2px;
+            margin: 4px;
+            border-radius: 4px;
+            border-color: #f2dede;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background-color: #FFFFFF;
+            cursor: pointer;
+        }
+
+        a[class="paginate_button"] {
+            font: bold 11px Arial;
+            text-decoration: none;
+            background-color: #EEEEEE;
+            color: #333333;
+            padding: 4px 6px 4px 6px;
+            border-top: 1px solid #CCCCCC;
+            border-right: 1px solid #333333;
+            border-bottom: 1px solid #333333;
+            border-left: 1px solid #CCCCCC;
+        }
+
+        div.dataTables_length {
+            padding-left: 2em;
+        }
+
+        div.dataTables_length,
+        div.dataTables_filter {
+            padding-top: 0.55em;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @{
+            Html.RenderPartial("_HeaderNavBar");
+        }
+    </div>
+    <div>
+        @RenderBody()
+        <hr />
+    </div>
+    @*<div>
+            @Html.Partial("_footer")
+        </div>*@
+
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/Scripts/toolscripts/todscheduler.js"></script>
+    <script src="~/Scripts/toolscripts/uploader.js"></script>
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            loadschStatus();
+            //alert("1ready");
+            $("#cefwklist option").each(function () {
+                $(this).attr("title", $(this).text());
+            });
+            //global variable for tracking click event triggered to avoid multiple times getting triggered
+            calltriggered = false;
+            $("#cefwklist").on('change',function (event) {
+                //event.preventDefault();
+                event.stopPropagation();
+                fiscalWeek = $(this).val();
+                //alert("selected week is : " + fiscalWeek);
+                if (calltriggered) {
+                    return false;
+                }
+                loadCETableData();
+                calltriggered = true;
+                return false;
+            });
+
+           
+        });
+    </script>
+    <script type="text/javascript">
+        function loadCETableData() {
+            try {
+                if (typeof fiscalWeek == 'undefined') {
+                    alert("please Select the Fiscal Week to view the Comment Extractor Information");
+                    return;
+                }
+                var dataString = new FormData();
+                var weekdata = "Selected Week = " + fiscalWeek;
+                var jsonstr = JSON.stringify(weekdata)
+                dataString.append("fweek", fiscalWeek);
+                //alert(jsonstr);
+                // Setup - add a text input to each footer cell
+                $('#cetable .filters th').each(function () {
+                    //                    alert($(this).index()).text();
+                    var title = $('#cetable thead th').eq($(this).index()).text();
+                    //                    alert(title);
+                    var $label = $("<label/>");
+                    $label.attr("for", title);
+                    //                        $label.html(title);
+                    //                    alert($label.toString());
+                    var $input = $("<input/>");
+                    $input.attr('name', title);
+                    $input.attr('id', title);
+                    $input.attr('type', 'text');
+                    $input.attr('placeholder', "Search " + title);
+                    $input.off('mousedown');
+                    $(this).append($label).append("<br>").append($input);
+                });
+                var cetable = $("#cetable").DataTable({
+                    //"dom": '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>',
+                    //"dom": '<"top"ilp<"clear">><rt><"bottom"ilp<"clear">>',
+                    "dom": '<"top"<i>lp><rt><"bottom"><"clear">',
+                    "bjQueryUI": true,
+                    "processing": true,
+                    "serverSide": true,
+                    "pagingType": "full_numbers",
+                    "ajax": {
+                        url: "/TOD/LoadCEData?fweek=" + fiscalWeek,
+                        type: "POST",
+                        processData: true,
+                        cache: false,
+                        contentType: "application/x-www-form-urlencoded",
+                        dataType: "json",
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            ////                                $("#" + resultdivid).html(err.message);
+                            //                                $("#processingdiv").hide();
+                            alert("Response Header : " + jqXHR.statusCode + "\n" + jqXHR.statusText + "\n" + jqXHR.getResponseHeader + "\n error :" + jqXHR.message + "\n textStatus : " + textStatus + " \n errorThrown : " + errorThrown);
+                            calltriggered = false;
+                        }
+                    },
+                    "pageLength": 500,
+                    "lengthMenu": [[500, 1000, 2000, 5000], [500, 1000, 2000, 5000]],
+                    "scrollY": "428px",
+                    "ordering": true,
+                    "searching": true,
+                    "scrollX": true,
+                    "scrollCollapse": true,
+                    "paging": true,
+                    "destroy": true,
+                    
+                    "dataSrc": function (json) {
+                        var jsondata = JSON.stringify(json);
+                        //alert(jsondata)
+                        //alert(json.data);
+                        return json.data;
+                    },
+                    "createdRow": function (row, data, index) {
+                        //                            alert(data[2]);
+                        var len = data.length;
+                        for (var i = 0; i < len; i++) {
+                            $('td', row).eq(i).attr('title', data[i]);
+                        }
+                    },
+                    "initComplete": function () {
+                        calltriggered = false;
+                    }
+                });
+                // Apply the search
+                cetable.columns().eq(0).each(function (colIdx) {
+
+                    $('input', $('.filters th')[colIdx]).on('keyup change', function (ev) {
+                        //                                        alert("Value on" + colIdx + " is " + this.value);
+                        //                            var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+
+                        //                            if(keycode === 13){
+                        //                                alert(keycode);
+                        srchtable
+                            .column(colIdx)
+                            .search(this.value)
+                            .draw();
+                        //                            }
+                    });
+
+                    $('input', $('.filters th')[colIdx]).on('click', function (e) {
+                        e.stopPropagation();
+                    });
+                });
+            } catch (err) {
+                alert("Exception Occured : " + err.message);
+            }
+        };
+       
+    </script>
+
+</body>
+</html>

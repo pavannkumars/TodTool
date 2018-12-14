@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" 
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <persistence-unit name="examplePersistenceUnit" transaction-type="RESOURCE_LOCAL">
+    <provider>NPersistence.NHibernate.NHibernatePersistence</provider>
+    <class>TODTool.Employee</class>
+    <properties>
+      <property name="connection.provider" value="NHibernate.Connection.DriverConnectionProvider"/>
+      <property name="dialect" value="NHibernate.Dialect.MySQL5Dialect"/>
+      <property name="connection.driver_class" value="NHibernate.Driver.MySqlDataDriver"/>
+      <property name="connection.connection_string" value="server=dev1srv; user id=user; password=pass; database=db_name"/>
+      <property name="show_sql" value="true"/>
+      <property name="hbm2ddl.keywords" value="none"/>
+      <property name="hbm2ddl.auto" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>

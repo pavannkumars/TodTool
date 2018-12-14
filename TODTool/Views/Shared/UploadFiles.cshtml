@@ -1,0 +1,46 @@
+﻿@model TODTool.FormModels.FileModel
+@{
+    //ViewBag.Title = "Topic On Demand Report Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*@@using (Html.BeginForm("UploadFiles", "UploadFiles", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
+@*{*@
+    @Html.AntiForgeryToken()
+
+<div>
+    <form id="FormUpload" enctype="multipart/form-data" method="post">
+        <span class="btn btn-success fileinput-button">
+            <!--<i class="glyphicon glyphicon-plus"></i>
+            <span>Add files...</span>-->
+            <p>Select one or more files to Upload:</p>
+            <input type="file" multiple name="UploadedFile" id="UploadedFile" onchange="MultiplefileSelected(event)" />
+        </span>
+        <button class="btn btn-primary start" type="button" id="Submit_btn" onclick="UploadMultipleFiles();">
+            <i class="glyphicon glyphicon-upload"></i>
+            <span>Start upload</span>
+        </button>
+        <!--<button class="btn btn-warning cancel"
+            type="button" id="Cancel_btn">
+        <i class="glyphicon glyphicon-ban-circle"></i>
+        <span>close</span>
+    </button>-->
+    </form>
+    <div class="progress CustomProgress">
+        <div id="FileProgress"
+             class="progress-bar" role="progressbar"
+             aria-valuenow="0" aria-valuemin="0"
+             aria-valuemax="100" style="width: 0%;">
+            <span></span>
+        </div>
+    </div>
+    <div id="Files"></div>
+    <div class="InfoContainer">
+        <div id="Imagecontainer"></div>
+        <div id="FileName" class="info">
+        </div>
+        <div id="FileType" class="info">
+        </div>
+        <div id="FileSize" class="info">
+        </div>
+    </div>
+</div>

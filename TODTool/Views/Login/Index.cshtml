@@ -1,0 +1,51 @@
+﻿@model TODTool.Helpers.TODModelEnumerators
+
+
+@{
+    ViewBag.Title = "Login Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h2 class="text-center">Enter the Credentials</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-offset-4 col-md-4">
+        <legend>Login Details</legend>
+        <fieldset>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true, "Login failed. Check your login details.");
+            <div>
+                <div class="editor-label">
+                    @Html.LabelFor(tODModel => tODModel.todUserModel.UserName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(tODModel => tODModel.todUserModel.UserName, "Enter UserName", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(tODModel => tODModel.todUserModel.UserName)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(tODModel => tODModel.todUserModel.Password)
+                </div>
+                <div class="editor-field">
+                    @Html.PasswordFor(tODModel => tODModel.todUserModel.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(tODModel => tODModel.todUserModel.Password)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(tODModel => tODModel.todUserModel.userRole)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(tODModel => tODModel.todUserModel.userRole,
+                        new SelectList(Enum.GetValues(typeof(TODTool.modelenums.UserRoles))),
+                        "Select Gender", new {@class = "form-control" })
+                    @Html.ValidationMessageFor(tODModel => tODModel.todUserModel.userRole)
+                </div>
+                <hr />
+                <input type="submit" value="Log In" class="btn btn-primary" />
+            </div>
+            }
+        </fieldset>
+    </div>
+</div>
+

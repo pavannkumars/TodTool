@@ -1,0 +1,769 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TODDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CE_DATA">
+          <Key>
+            <PropertyRef Name="CE_SEQUENCE_ID" />
+          </Key>
+          <Property Name="FW_ID" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CE_SEQUENCE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REP_GEN_DATE" Type="datetime" Nullable="false" />
+          <Property Name="FW_START_DATE" Type="datetime" Nullable="false" />
+          <Property Name="FW_END_DATE" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_TIME" Type="datetime" Nullable="false" />
+          <Property Name="PUBLICATION" Type="varchar(max)" Nullable="false" />
+          <Property Name="LANGUAGE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="GUID" Type="varchar(max)" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" Nullable="false" />
+          <Property Name="ACCURATE_RATING" Type="int" Nullable="false" />
+          <Property Name="USEFUL_RATING" Type="int" Nullable="false" />
+          <Property Name="EASY_TO_UNDERSTAND_RATING" Type="int" Nullable="false" />
+          <Property Name="ARTICLE_SOLVED_ISSUE" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="FEEDBACK" Type="varchar(max)" Nullable="false" />
+          <Property Name="CE_STATUS" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FW_CALENDAR">
+          <Key>
+            <PropertyRef Name="Fiscal_Week" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Fiscal_Week" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OMNITURE_DATA">
+          <Key>
+            <PropertyRef Name="SEQUENCE_ID" />
+          </Key>
+          <Property Name="SEQUENCE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FW_ID" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="REP_GEN_DATE" Type="datetime" Nullable="false" />
+          <Property Name="FW_START_DATE" Type="datetime" Nullable="false" />
+          <Property Name="FW_END_DATE" Type="datetime" Nullable="false" />
+          <Property Name="LANGUAGE_REPORT" Type="varbinary(max)" Nullable="false" />
+          <Property Name="MANUAL_TITLE" Type="varbinary(max)" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varbinary(max)" Nullable="false" />
+          <Property Name="PRODUCT_CODE" Type="varbinary(max)" Nullable="false" />
+          <Property Name="PUBLICATION_ID" Type="varbinary(max)" Nullable="false" />
+          <Property Name="TOD_REPORT" Type="varbinary(max)" Nullable="false" />
+          <Property Name="TOPIC_GUID" Type="varbinary(max)" Nullable="false" />
+          <Property Name="TOPIC_TITLE" Type="varbinary(max)" Nullable="false" />
+          <Property Name="OMNITURE_STATUS" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Code" Type="varchar(max)" />
+          <Property Name="Status" Type="varchar(max)" />
+          <Property Name="Brand" Type="varchar(max)" />
+          <Property Name="Category" Type="varchar(max)" />
+          <Property Name="Product Class" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Last Updated" Type="datetime" />
+          <Property Name="Last Updated By" Type="varchar(max)" />
+          <Property Name="Created" Type="varchar(max)" />
+          <Property Name="Created By" Type="varchar(max)" />
+          <Property Name="Effective From" Type="datetime" />
+          <Property Name="Expiring On" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Product_Variant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Code" Type="varchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="255" />
+          <Property Name="Parent Product" Type="varchar(max)" />
+          <Property Name="Primary" Type="varchar(max)" />
+          <Property Name="Content Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Last Updated" Type="datetime" />
+          <Property Name="Last Updated By" Type="varchar(max)" />
+          <Property Name="Created" Type="varchar(max)" />
+          <Property Name="Created By" Type="varchar(max)" />
+          <Property Name="Effective From" Type="datetime" />
+          <Property Name="Expiring on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="REPORT_DATA">
+          <Key>
+            <PropertyRef Name="REP_ID" />
+          </Key>
+          <Property Name="REP_ID" Type="int" Nullable="false" />
+          <Property Name="REP_ID_FK" Type="int" Nullable="false" />
+          <Property Name="FW_ID" Type="varchar" MaxLength="500" />
+          <Property Name="REP_TYPE" Type="varchar(max)" Nullable="false" />
+          <Property Name="REP_FILE" Type="varbinary(max)" Nullable="false" />
+          <Property Name="REP_FILE_TYPE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="STATUS" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TOD.dbo.TOD_Cathy_Import' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TOD_Cathy_Import">
+          <Property Name="Created_Date" Type="varchar" MaxLength="255" />
+          <Property Name="Created_Time" Type="varchar" MaxLength="255" />
+          <Property Name="Publication" Type="varchar" MaxLength="255" />
+          <Property Name="Language" Type="varchar" MaxLength="255" />
+          <Property Name="GUID" Type="varchar" MaxLength="255" />
+          <Property Name="Title" Type="varchar" MaxLength="255" />
+          <Property Name="Accurate_Rating" Type="int" />
+          <Property Name="Useful_Rating" Type="int" />
+          <Property Name="Easy_to_ Understand_Rating" Type="int" />
+          <Property Name="Article_Solve_ Issue" Type="varchar" MaxLength="255" />
+          <Property Name="Feedback" Type="varchar" MaxLength="255" />
+        </EntityType>-->
+        <EntityType Name="TOD_DATA">
+          <Key>
+            <PropertyRef Name="SEQUENCE_ID" />
+          </Key>
+          <Property Name="SEQUENCE_ID" Type="int" Nullable="false" />
+          <Property Name="CE_SEQUENCE_ID" Type="int" Nullable="false" />
+          <Property Name="FW_ID" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="REP_GEN_DATE" Type="datetime" Nullable="false" />
+          <Property Name="FW_START_DATE" Type="datetime" Nullable="false" />
+          <Property Name="FW_END_DATE" Type="datetime" Nullable="false" />
+          <Property Name="REPORTER" Type="varchar(max)" Nullable="false" />
+          <Property Name="ISSUE_TYPE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SUMMARY" Type="varchar(max)" Nullable="false" />
+          <Property Name="LANGUAGE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DEFECT_SOURCE" Type="varchar(max)" Nullable="false" />
+          <Property Name="DEFECT_TYPE" Type="varchar(max)" Nullable="false" />
+          <Property Name="PRODUCT_CATEGORY" Type="varchar(max)" Nullable="false" />
+          <Property Name="COMPONENT/S" Type="varchar(max)" Nullable="false" />
+          <Property Name="PRIORITY_LEVEL" Type="varchar(max)" Nullable="false" />
+          <Property Name="ASSIGNEE" Type="varchar(max)" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar(max)" Nullable="false" />
+          <Property Name="TOD_STATUS" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TOD_TransactionLog">
+          <Key>
+            <PropertyRef Name="logId" />
+          </Key>
+          <Property Name="logId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="logtype" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="logdate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="logMessage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="logStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="MAILID" />
+          </Key>
+          <Property Name="USERID" Type="int" Nullable="false" />
+          <Property Name="MAILID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ROLES" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CE_DATA_FW_CALENDAR">
+          <End Role="FW_CALENDAR" Type="Self.FW_CALENDAR" Multiplicity="1" />
+          <End Role="CE_DATA" Type="Self.CE_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FW_CALENDAR">
+              <PropertyRef Name="Fiscal_Week" />
+            </Principal>
+            <Dependent Role="CE_DATA">
+              <PropertyRef Name="FW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OMNITURE_DATA_FW_CALENDAR">
+          <End Role="FW_CALENDAR" Type="Self.FW_CALENDAR" Multiplicity="1" />
+          <End Role="OMNITURE_DATA" Type="Self.OMNITURE_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FW_CALENDAR">
+              <PropertyRef Name="Fiscal_Week" />
+            </Principal>
+            <Dependent Role="OMNITURE_DATA">
+              <PropertyRef Name="FW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REPORT_DATA_FW_CALENDAR">
+          <End Role="FW_CALENDAR" Type="Self.FW_CALENDAR" Multiplicity="0..1" />
+          <End Role="REPORT_DATA" Type="Self.REPORT_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FW_CALENDAR">
+              <PropertyRef Name="Fiscal_Week" />
+            </Principal>
+            <Dependent Role="REPORT_DATA">
+              <PropertyRef Name="FW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TOD_DATA_FW_CALENDAR">
+          <End Role="FW_CALENDAR" Type="Self.FW_CALENDAR" Multiplicity="1" />
+          <End Role="TOD_DATA" Type="Self.TOD_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FW_CALENDAR">
+              <PropertyRef Name="Fiscal_Week" />
+            </Principal>
+            <Dependent Role="TOD_DATA">
+              <PropertyRef Name="FW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="TODDBModelStoreContainer">
+          <EntitySet Name="CE_DATA" EntityType="Self.CE_DATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FW_CALENDAR" EntityType="Self.FW_CALENDAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OMNITURE_DATA" EntityType="Self.OMNITURE_DATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_Variant" EntityType="Self.Product_Variant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REPORT_DATA" EntityType="Self.REPORT_DATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOD_DATA" EntityType="Self.TOD_DATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOD_TransactionLog" EntityType="Self.TOD_TransactionLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CE_DATA_FW_CALENDAR" Association="Self.FK_CE_DATA_FW_CALENDAR">
+            <End Role="FW_CALENDAR" EntitySet="FW_CALENDAR" />
+            <End Role="CE_DATA" EntitySet="CE_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OMNITURE_DATA_FW_CALENDAR" Association="Self.FK_OMNITURE_DATA_FW_CALENDAR">
+            <End Role="FW_CALENDAR" EntitySet="FW_CALENDAR" />
+            <End Role="OMNITURE_DATA" EntitySet="OMNITURE_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REPORT_DATA_FW_CALENDAR" Association="Self.FK_REPORT_DATA_FW_CALENDAR">
+            <End Role="FW_CALENDAR" EntitySet="FW_CALENDAR" />
+            <End Role="REPORT_DATA" EntitySet="REPORT_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TOD_DATA_FW_CALENDAR" Association="Self.FK_TOD_DATA_FW_CALENDAR">
+            <End Role="FW_CALENDAR" EntitySet="FW_CALENDAR" />
+            <End Role="TOD_DATA" EntitySet="TOD_DATA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TODDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CE_DATA">
+          <Key>
+            <PropertyRef Name="CE_SEQUENCE_ID" />
+          </Key>
+          <Property Name="FW_ID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CE_SEQUENCE_ID" Type="Int32" Nullable="false" />
+          <Property Name="REP_GEN_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FW_START_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FW_END_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_TIME" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PUBLICATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LANGUAGE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GUID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACCURATE_RATING" Type="Int32" Nullable="false" />
+          <Property Name="USEFUL_RATING" Type="Int32" Nullable="false" />
+          <Property Name="EASY_TO_UNDERSTAND_RATING" Type="Int32" Nullable="false" />
+          <Property Name="ARTICLE_SOLVED_ISSUE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FEEDBACK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CE_STATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FW_CALENDAR" Relationship="Self.FK_CE_DATA_FW_CALENDAR" FromRole="CE_DATA" ToRole="FW_CALENDAR" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          </EntityType>
+        <EntityType Name="FW_CALENDAR">
+          <Key>
+            <PropertyRef Name="Fiscal_Week" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Fiscal_Week" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CE_DATA" Relationship="Self.FK_CE_DATA_FW_CALENDAR" FromRole="FW_CALENDAR" ToRole="CE_DATA" />
+          <NavigationProperty Name="OMNITURE_DATA" Relationship="Self.FK_OMNITURE_DATA_FW_CALENDAR" FromRole="FW_CALENDAR" ToRole="OMNITURE_DATA" />
+          <NavigationProperty Name="REPORT_DATA" Relationship="Self.FK_REPORT_DATA_FW_CALENDAR" FromRole="FW_CALENDAR" ToRole="REPORT_DATA" />
+          <NavigationProperty Name="TOD_DATA" Relationship="Self.FK_TOD_DATA_FW_CALENDAR" FromRole="FW_CALENDAR" ToRole="TOD_DATA" />
+        </EntityType>
+        <EntityType Name="OMNITURE_DATA">
+          <Key>
+            <PropertyRef Name="SEQUENCE_ID" />
+          </Key>
+          <Property Name="SEQUENCE_ID" Type="Int32" Nullable="false" />
+          <Property Name="FW_ID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REP_GEN_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FW_START_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FW_END_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LANGUAGE_REPORT" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="MANUAL_TITLE" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="PRODUCT_CODE" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="PUBLICATION_ID" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="TOD_REPORT" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="TOPIC_GUID" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="TOPIC_TITLE" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="OMNITURE_STATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FW_CALENDAR" Relationship="Self.FK_OMNITURE_DATA_FW_CALENDAR" FromRole="OMNITURE_DATA" ToRole="FW_CALENDAR" />
+        </EntityType>
+        <EntityType Name="REPORT_DATA">
+          <Key>
+            <PropertyRef Name="REP_ID" />
+          </Key>
+          <Property Name="REP_ID" Type="Int32" Nullable="false" />
+          <Property Name="REP_ID_FK" Type="Int32" Nullable="false" />
+          <Property Name="FW_ID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="REP_TYPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REP_FILE" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="REP_FILE_TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STATUS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FW_CALENDAR" Relationship="Self.FK_REPORT_DATA_FW_CALENDAR" FromRole="REPORT_DATA" ToRole="FW_CALENDAR" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TOD_DATA">
+          <Key>
+            <PropertyRef Name="SEQUENCE_ID" />
+          </Key>
+          <Property Name="SEQUENCE_ID" Type="Int32" Nullable="false" />
+          <Property Name="CE_SEQUENCE_ID" Type="Int32" Nullable="false" />
+          <Property Name="FW_ID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REP_GEN_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FW_START_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FW_END_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="REPORTER" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ISSUE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SUMMARY" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LANGUAGE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEFECT_SOURCE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEFECT_TYPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRODUCT_CATEGORY" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COMPONENT_S" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRIORITY_LEVEL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ASSIGNEE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TOD_STATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FW_CALENDAR" Relationship="Self.FK_TOD_DATA_FW_CALENDAR" FromRole="TOD_DATA" ToRole="FW_CALENDAR" />
+          </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="MAILID" />
+          </Key>
+          <Property Name="USERID" Type="Int32" Nullable="false" />
+          <Property Name="MAILID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROLES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CE_DATA_FW_CALENDAR">
+          <End Role="FW_CALENDAR" Type="Self.FW_CALENDAR" Multiplicity="1" />
+          <End Role="CE_DATA" Type="Self.CE_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FW_CALENDAR">
+              <PropertyRef Name="Fiscal_Week" />
+            </Principal>
+            <Dependent Role="CE_DATA">
+              <PropertyRef Name="FW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OMNITURE_DATA_FW_CALENDAR">
+          <End Role="FW_CALENDAR" Type="Self.FW_CALENDAR" Multiplicity="1" />
+          <End Role="OMNITURE_DATA" Type="Self.OMNITURE_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FW_CALENDAR">
+              <PropertyRef Name="Fiscal_Week" />
+            </Principal>
+            <Dependent Role="OMNITURE_DATA">
+              <PropertyRef Name="FW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REPORT_DATA_FW_CALENDAR">
+          <End Role="FW_CALENDAR" Type="Self.FW_CALENDAR" Multiplicity="0..1" />
+          <End Role="REPORT_DATA" Type="Self.REPORT_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FW_CALENDAR">
+              <PropertyRef Name="Fiscal_Week" />
+            </Principal>
+            <Dependent Role="REPORT_DATA">
+              <PropertyRef Name="FW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TOD_DATA_FW_CALENDAR">
+          <End Role="FW_CALENDAR" Type="Self.FW_CALENDAR" Multiplicity="1" />
+          <End Role="TOD_DATA" Type="Self.TOD_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FW_CALENDAR">
+              <PropertyRef Name="Fiscal_Week" />
+            </Principal>
+            <Dependent Role="TOD_DATA">
+              <PropertyRef Name="FW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TODEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CE_DATA" EntityType="Self.CE_DATA" />
+          <EntitySet Name="FW_CALENDAR" EntityType="Self.FW_CALENDAR" />
+          <EntitySet Name="OMNITURE_DATA" EntityType="Self.OMNITURE_DATA" />
+          <EntitySet Name="REPORT_DATA" EntityType="Self.REPORT_DATA" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TOD_DATA" EntityType="Self.TOD_DATA" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_CE_DATA_FW_CALENDAR" Association="Self.FK_CE_DATA_FW_CALENDAR">
+            <End Role="FW_CALENDAR" EntitySet="FW_CALENDAR" />
+            <End Role="CE_DATA" EntitySet="CE_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OMNITURE_DATA_FW_CALENDAR" Association="Self.FK_OMNITURE_DATA_FW_CALENDAR">
+            <End Role="FW_CALENDAR" EntitySet="FW_CALENDAR" />
+            <End Role="OMNITURE_DATA" EntitySet="OMNITURE_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REPORT_DATA_FW_CALENDAR" Association="Self.FK_REPORT_DATA_FW_CALENDAR">
+            <End Role="FW_CALENDAR" EntitySet="FW_CALENDAR" />
+            <End Role="REPORT_DATA" EntitySet="REPORT_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TOD_DATA_FW_CALENDAR" Association="Self.FK_TOD_DATA_FW_CALENDAR">
+            <End Role="FW_CALENDAR" EntitySet="FW_CALENDAR" />
+            <End Role="TOD_DATA" EntitySet="TOD_DATA" />
+          </AssociationSet>
+          <EntitySet Name="TOD_TransactionLog" EntityType="TODDBModel.TOD_TransactionLog" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TODDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TODDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Products" EntityType="TODDBModel.Product" />
+          <EntitySet Name="Product_Variant" EntityType="TODDBModel.Product_Variant" />
+        </EntityContainer>
+        <EntityType Name="TOD_TransactionLog">
+          <Key>
+            <PropertyRef Name="logId" />
+          </Key>
+          <Property Name="logId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="logtype" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="logdate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="logMessage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="logStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Product_Class" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Updated" Type="DateTime" Precision="3" />
+          <Property Name="Last_Updated_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Effective_From" Type="DateTime" Precision="3" />
+          <Property Name="Expiring_On" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Product_Variant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Parent_Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Primary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content_Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Updated" Type="DateTime" Precision="3" />
+          <Property Name="Last_Updated_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Effective_From" Type="DateTime" Precision="3" />
+          <Property Name="Expiring_on" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TODDBModelStoreContainer" CdmEntityContainer="TODEntities">
+          <EntitySetMapping Name="CE_DATA">
+            <EntityTypeMapping TypeName="TODDBModel.CE_DATA">
+              <MappingFragment StoreEntitySet="CE_DATA">
+                <ScalarProperty Name="ARTICLE_SOLVED_ISSUE" ColumnName="ARTICLE_SOLVED_ISSUE" />
+                <ScalarProperty Name="EASY_TO_UNDERSTAND_RATING" ColumnName="EASY_TO_UNDERSTAND_RATING" />
+                <ScalarProperty Name="USEFUL_RATING" ColumnName="USEFUL_RATING" />
+                <ScalarProperty Name="ACCURATE_RATING" ColumnName="ACCURATE_RATING" />
+                <ScalarProperty Name="CREATED_TIME" ColumnName="CREATED_TIME" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FW_ID" ColumnName="FW_ID" />
+                <ScalarProperty Name="CE_SEQUENCE_ID" ColumnName="CE_SEQUENCE_ID" />
+                <ScalarProperty Name="REP_GEN_DATE" ColumnName="REP_GEN_DATE" />
+                <ScalarProperty Name="FW_START_DATE" ColumnName="FW_START_DATE" />
+                <ScalarProperty Name="FW_END_DATE" ColumnName="FW_END_DATE" />
+                <ScalarProperty Name="PUBLICATION" ColumnName="PUBLICATION" />
+                <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="FEEDBACK" ColumnName="FEEDBACK" />
+                <ScalarProperty Name="CE_STATUS" ColumnName="CE_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FW_CALENDAR">
+            <EntityTypeMapping TypeName="TODDBModel.FW_CALENDAR">
+              <MappingFragment StoreEntitySet="FW_CALENDAR">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fiscal_Week" ColumnName="Fiscal_Week" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OMNITURE_DATA">
+            <EntityTypeMapping TypeName="TODDBModel.OMNITURE_DATA">
+              <MappingFragment StoreEntitySet="OMNITURE_DATA">
+                <ScalarProperty Name="SEQUENCE_ID" ColumnName="SEQUENCE_ID" />
+                <ScalarProperty Name="FW_ID" ColumnName="FW_ID" />
+                <ScalarProperty Name="REP_GEN_DATE" ColumnName="REP_GEN_DATE" />
+                <ScalarProperty Name="FW_START_DATE" ColumnName="FW_START_DATE" />
+                <ScalarProperty Name="FW_END_DATE" ColumnName="FW_END_DATE" />
+                <ScalarProperty Name="LANGUAGE_REPORT" ColumnName="LANGUAGE_REPORT" />
+                <ScalarProperty Name="MANUAL_TITLE" ColumnName="MANUAL_TITLE" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="PUBLICATION_ID" ColumnName="PUBLICATION_ID" />
+                <ScalarProperty Name="TOD_REPORT" ColumnName="TOD_REPORT" />
+                <ScalarProperty Name="TOPIC_GUID" ColumnName="TOPIC_GUID" />
+                <ScalarProperty Name="TOPIC_TITLE" ColumnName="TOPIC_TITLE" />
+                <ScalarProperty Name="OMNITURE_STATUS" ColumnName="OMNITURE_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REPORT_DATA">
+            <EntityTypeMapping TypeName="TODDBModel.REPORT_DATA">
+              <MappingFragment StoreEntitySet="REPORT_DATA">
+                <ScalarProperty Name="REP_ID" ColumnName="REP_ID" />
+                <ScalarProperty Name="REP_ID_FK" ColumnName="REP_ID_FK" />
+                <ScalarProperty Name="FW_ID" ColumnName="FW_ID" />
+                <ScalarProperty Name="REP_TYPE" ColumnName="REP_TYPE" />
+                <ScalarProperty Name="REP_FILE" ColumnName="REP_FILE" />
+                <ScalarProperty Name="REP_FILE_TYPE" ColumnName="REP_FILE_TYPE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TODDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOD_DATA">
+            <EntityTypeMapping TypeName="TODDBModel.TOD_DATA">
+              <MappingFragment StoreEntitySet="TOD_DATA">
+                <ScalarProperty Name="PRIORITY_LEVEL" ColumnName="PRIORITY_LEVEL" />
+                <ScalarProperty Name="PRODUCT_CATEGORY" ColumnName="PRODUCT_CATEGORY" />
+                <ScalarProperty Name="DEFECT_TYPE" ColumnName="DEFECT_TYPE" />
+                <ScalarProperty Name="DEFECT_SOURCE" ColumnName="DEFECT_SOURCE" />
+                <ScalarProperty Name="ISSUE_TYPE" ColumnName="ISSUE_TYPE" />
+                <ScalarProperty Name="SEQUENCE_ID" ColumnName="SEQUENCE_ID" />
+                <ScalarProperty Name="CE_SEQUENCE_ID" ColumnName="CE_SEQUENCE_ID" />
+                <ScalarProperty Name="FW_ID" ColumnName="FW_ID" />
+                <ScalarProperty Name="REP_GEN_DATE" ColumnName="REP_GEN_DATE" />
+                <ScalarProperty Name="FW_START_DATE" ColumnName="FW_START_DATE" />
+                <ScalarProperty Name="FW_END_DATE" ColumnName="FW_END_DATE" />
+                <ScalarProperty Name="REPORTER" ColumnName="REPORTER" />
+                <ScalarProperty Name="SUMMARY" ColumnName="SUMMARY" />
+                <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+                <ScalarProperty Name="COMPONENT_S" ColumnName="COMPONENT/S" />
+                <ScalarProperty Name="ASSIGNEE" ColumnName="ASSIGNEE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="TOD_STATUS" ColumnName="TOD_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TODDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="MAILID" ColumnName="MAILID" />
+                <ScalarProperty Name="ROLES" ColumnName="ROLES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOD_TransactionLog">
+            <EntityTypeMapping TypeName="TODDBModel.TOD_TransactionLog">
+              <MappingFragment StoreEntitySet="TOD_TransactionLog">
+                <ScalarProperty Name="logStatus" ColumnName="logStatus" />
+                <ScalarProperty Name="logMessage" ColumnName="logMessage" />
+                <ScalarProperty Name="logdate" ColumnName="logdate" />
+                <ScalarProperty Name="logtype" ColumnName="logtype" />
+                <ScalarProperty Name="logId" ColumnName="logId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="TODDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="TODDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="TODDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="TODDBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TODDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="TODDBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TODDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TODDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TODDBModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="TODDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Expiring_On" ColumnName="Expiring On" />
+                <ScalarProperty Name="Effective_From" ColumnName="Effective From" />
+                <ScalarProperty Name="Created_By" ColumnName="Created By" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Last_Updated_By" ColumnName="Last Updated By" />
+                <ScalarProperty Name="Last_Updated" ColumnName="Last Updated" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Product_Class" ColumnName="Product Class" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_Variant">
+            <EntityTypeMapping TypeName="TODDBModel.Product_Variant">
+              <MappingFragment StoreEntitySet="Product_Variant">
+                <ScalarProperty Name="Expiring_on" ColumnName="Expiring on" />
+                <ScalarProperty Name="Effective_From" ColumnName="Effective From" />
+                <ScalarProperty Name="Created_By" ColumnName="Created By" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Last_Updated_By" ColumnName="Last Updated By" />
+                <ScalarProperty Name="Last_Updated" ColumnName="Last Updated" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Content_Code" ColumnName="Content Code" />
+                <ScalarProperty Name="Primary" ColumnName="Primary" />
+                <ScalarProperty Name="Parent_Product" ColumnName="Parent Product" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

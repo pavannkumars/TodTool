@@ -1,0 +1,48 @@
+﻿<div class="sidenav" style="border-color:antiquewhite;">
+    <div>
+        <legend class="text-info"><b>Fiscal Weeks</b></legend>
+        <fieldset>
+            <div id="celist" class="celist" style="padding-left:0.6em;">
+                <form id="cewkform" class="form-inline">
+                    <div class="form-group-sm">
+                        @{
+                            var fwsklist = (List<string>)ViewData["fwklist"];
+                            var sListItems = new List<SelectListItem>();
+                            sListItems.Clear();
+                            foreach (var fw in fwsklist)
+                            {
+                                var sListItem = new SelectListItem { Text = fw, Value = fw };
+                                sListItems.Add(sListItem);
+                            }
+                        }
+                        @*@Html.DropDownList("myDropDown", new SelectList(Model, "ProductName", "ProductName"), "-- Select item --")*@
+                        @Html.ListBox("cefwklist", sListItems, new { @class = "form-control celist", @style = "width:20em;", @size = "20" })
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <legend class="text-info"><b>Product List</b></legend>
+        <fieldset>
+            <div id="todrepprdList" class="todrepprdlist" style="padding-left:0.6em;">
+                <form id="cewkform" class="form-inline">
+                    <div class="form-group-sm">
+                        @{
+                            var PRDList = (List<string>)ViewData["PRDList"];
+                            var sListItems1 = new List<SelectListItem>();
+                            sListItems1.Clear();
+                            foreach (var fw in PRDList)
+                            {
+                                var sListItem = new SelectListItem { Text = fw, Value = fw };
+                                sListItems1.Add(sListItem);
+                            }
+                        }
+                        @*@Html.DropDownList("myDropDown", new SelectList(Model, "ProductName", "ProductName"), "-- Select item --")*@
+                        @Html.ListBox("PRDList", sListItems1, new { @class = "form-control PRDList", @style = "width:20em;", @size = "20" })
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+    </div>
+</div>
